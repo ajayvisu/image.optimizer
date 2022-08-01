@@ -8,10 +8,9 @@ import { triggerBase64Download } from "react-base64-downloader";
 
 function App() {
   const [img, setImg] = React.useState();
-  const [data, setData] = React.useState('');
   const handleChange = () => {
     console.log(img);
-   
+
     Compress.imageFileResizer(
       img, // the file from input
       480, // width
@@ -21,20 +20,20 @@ function App() {
       0, // rotation
       (uri) => {
         console.log(uri);
-        setData(uri)
+        setImg(uri);
       },
       "base64"
     );
   };
-  // let base64 = uri;
+
   return (
     <div className="App">
       <input type="file" onChange={(event) => setImg(event.target.files[0])} />
       <button onClick={handleChange}>Submit</button>
-      <Base64Downloader base64={data} downloadName="image.opti_01">
+      <Base64Downloader base64={img} downloadName="image.opti_01">
         Click to download
       </Base64Downloader>
-      
+
       {/* <button onClick={() => triggerBase64Download(base64, "my_download_name")}>
         Click to download
       </button>
